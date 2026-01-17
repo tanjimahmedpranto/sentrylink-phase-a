@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SentryLink Comply Phase A Mock UI
 
-## Getting Started
+A small Next.js UI demonstrating how Phase A feels for a Factory user.
 
-First, run the development server:
+## What is included
 
+### Screen A: Evidence Vault
+- Table: Doc Name, Doc Type, Status, Expiry, Versions, Last Updated, Actions
+- Filters: Doc Type, Status, Expiry (all, expired, expiring soon), Search
+- Filters persist in the URL query string
+- Bulk select plus Add to Pack button shows selected count
+
+Route: `/evidence`
+
+### Screen B: Evidence Detail and Versions
+- Evidence metadata plus status chip
+- Version list (latest first)
+- Upload New Version modal
+  - notes required
+  - expiry date required
+  - file optional (mocked)
+
+Route: `/evidence/[id]`
+
+### Screen C: Buyer Request To Do
+- List of requests (docType, due date, status)
+- Fulfill modal
+  - choose existing evidence from vault by docType
+  - or create new evidence (mock)
+  - marks item fulfilled and links to evidence
+
+Route: `/requests`
+
+## Tech
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Mock JSON data plus local state only
+- Vitest for unit tests
+
+## Setup
+
+Requirements:
+- Node 18.18+ or Node 20+
+
+Install:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run dev:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run tests:
+```bash
+npm test
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Assumptions
 
-## Learn More
+- Expiring soon means within 30 days from today.
+- Uploading a new version sets evidence status to pending.
+- Evidence last updated becomes the upload date.
 
-To learn more about Next.js, take a look at the following resources:
+## Manual test checklist
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Evidence Vault: filter by doc type, status, expiry, search. Refresh to verify URL persistence.
+- Bulk select a few rows and click Add to Pack.
+- Evidence detail: open an item, upload a new version, verify version count and status update.
+- Requests: fulfill using existing evidence, then fulfill by creating new evidence, verify new evidence appears in vault.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+### Screenshots are in (docs/screenshots/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
