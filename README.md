@@ -107,11 +107,6 @@ BB:
 
 Screenshots are in `docs/screenshots/`.
 
-Optional: include a 3 to 5 minute screen recording showing:
-* Evidence Vault filtering and Add to Pack
-* Evidence Detail upload new version
-* Requests fulfill existing and create new evidence
-
 ## BB thin slice API (Option 1 Request workflow)
 
 This repo includes a minimal API thin slice built with Next.js Route Handlers and an in memory store.
